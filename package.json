@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build  && npm run copy:assets",
     "preview": "vite preview",
-    "copy:assets": "xcopy assets\\content dist\\assets\\content\\ /E /I"
+    "copy:assets": "cpy . ../dist/assets --cwd=assets"
   },
   "dependencies": {
     "vue": "^3.2.45",
@@ -17,6 +17,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
     "vite": "^4.0.0",
-    "cpx": "^1.5.0"
+    "cpx": "^1.5.0",
+    "cpy-cli": "^4.2.0"
   }
 }
