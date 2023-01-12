@@ -1,8 +1,5 @@
 <script>
 import  axios  from 'axios'
-import { jQuery } from 'jquery'
-
-let $ = jQuery;
 
 export default {
     data: () => ({
@@ -35,7 +32,8 @@ export default {
         },
 
         loadMarathons(page) {
-            let url = '/assets/content/data/marathons' + page + '.json';
+            // let p = page > 0 ? page : 1; 
+            let url = '/assets/content/data/marathons' + (page > 0 ? page : 1) + '.json';
             axios.get(url).then(response => {
                 this.marathons = response.data
             });
@@ -45,22 +43,19 @@ export default {
             let a = [];
             let self = this;
             for (let i = 1; i < 11; i++) {
-                let url = '/content/data/marathons' + i + '.json';
-                $.get({
-                    url, success: function (response) {
+                let url = '/assets/content/data/marathons' + i + '.json';
+                axios.get(url).then( response => {
                         if (i == 1) {
                             a = response.data;
                             a.hasPrevious = true;
-                            a.hasNext = true;
+                            a.hasNext = false;
                             self.loadMarathon(1);
                         } else {
-                            a.data = a.data.concat(response.data);
+                            a.data = a.data.concat(response.data.data);
                         }
-                    },
-                    async: false
+                    this.marathons = a;
                 });
             }
-            this.marathons = a;
         },
 
         loadMarathon(id) {
