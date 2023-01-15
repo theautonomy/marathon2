@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build  && npm run copy:assets",
+    "build": "vite build  && npm run copy:assets && npm run copy:docs",
     "preview": "vite preview",
     "copy:assets": "cpy . ../dist/assets --cwd=assets",
     "copy:docs": "cpy . ../docs --cwd=dist"
