@@ -128,7 +128,7 @@ export default {
                         <li list-group-item><i class="fa-solid fa-bolt"></i><span class="mx-4 mb-2 badge bg-secondary ">{{currentMarathon.pace}}</span></li>
                     </ul>
                     <div class="mt-4">
-                        <img class="rounded" v-bind:src="'/assets/content/img/' + currentMarathon.picture" v-bind:alt="currentMarathon.name" height="240">
+                        <img class="rounded" v-bind:src="'/assets/content/img/' + currentMarathon.picture" v-bind:alt="currentMarathon.name" height="200">
                     </div>
 
                     </div>
