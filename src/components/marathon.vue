@@ -22,7 +22,7 @@ export default {
 
     methods: {
         loadQuotes() {
-            let url = '/assets/content/data/quotes.json';
+            let url = 'assets/content/data/quotes.json';
             axios.get(url).then(resp => {
                 this.quotes = resp.data
                 this.randomQuote = this.quotes[Math.floor(Math.random() * this.quotes.length)];
@@ -33,7 +33,7 @@ export default {
 
         loadMarathons(page) {
             // let p = page > 0 ? page : 1; 
-            let url = '/assets/content/data/marathons' + (page > 0 ? page : 1) + '.json';
+            let url = 'assets/content/data/marathons' + (page > 0 ? page : 1) + '.json';
             axios.get(url).then(response => {
                 this.marathons = response.data
             });
@@ -43,7 +43,7 @@ export default {
             let a = [];
             let self = this;
             for (let i = 1; i < 11; i++) {
-                let url = '/assets/content/data/marathons' + i + '.json';
+                let url = 'assets/content/data/marathons' + i + '.json';
                 axios.get(url).then( response => {
                         if (i == 1) {
                             a = response.data;
@@ -60,7 +60,7 @@ export default {
 
         loadMarathon(id) {
             this.showResult = false;
-            let url = '/assets/content/data/marathon' + id.toString() + '.json';
+            let url = 'assets/content/data/marathon' + id.toString() + '.json';
             axios.get(url).then(response => {
                 this.currentMarathon = response.data
             });
