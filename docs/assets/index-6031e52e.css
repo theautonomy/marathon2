@@ -1,0 +1,1 @@
+.result-enter-from{opacity:0;transform:translate(300px)}.result-enter-active{transition:all .3s ease-out}.result-leave-to{opacity:0;transform:translate(-100px)}.result-leave-active{transition:all .3s ease-in}html{position:relative;min-height:100%}body{background:url(/assets/bg3-ec4b4c5e.jpg) center center fixed;background-size:cover}

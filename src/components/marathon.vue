@@ -148,7 +148,7 @@ export default {
 <style>
 .result-enter-from {
   opacity: 0;
-  transform: translateX(100px);
+  transform: translateX(300px);
 }
 .result-enter-active {
   transition: all 0.3s ease-out; 
