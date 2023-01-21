@@ -2,33 +2,26 @@
 import { ref, onBeforeMount, onBeforeUpdate, computed } from 'vue'
 import axios from 'axios'
 
-const quotes = ref([])
+import q from "../../assets/content/data/quotes.json"
 
 const props = defineProps({
     randomNumber: { type: Number, required: true },
 })
 
 onBeforeMount(() => {
-    loadQuotes();
+    // console.log(q)
+    // console.log(props.randomNumber);
 })
 
 onBeforeUpdate(() => {
-    // randomQuote.value = quote
 }
 )
 
-function loadQuotes() {
-    let url = 'assets/content/data/quotes.json';
-    axios.get(url).then(resp => {
-        quotes.value = resp.data
-    }).catch(e => {
-        console.log(e)
-    });
-}
-
 const randomQuote = computed(() => {
     let { randomNumber } = props
-    return quotes.value[Math.floor(Math.random() * quotes.value.length)]
+    // console.log(props.randomNumber);
+    // let n = Math.random();
+    return q[Math.floor(randomNumber * q.length)]
 }
 )
 </script>
