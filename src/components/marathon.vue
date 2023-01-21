@@ -1,33 +1,20 @@
 <script setup>
-import { ref, onMounted, onBeforeMount } from 'vue'
+import { ref, onBeforeMount } from 'vue'
 import axios from 'axios'
+import quote from './quote.vue'
 
 const marathons = ref([])
 const currentMarathon = ref([])
-const quotes = ref([])
-const randomQuote = ref('')
 const totalPages = ref(8)
 const numberPerPage = ref(10)
 const showResult = ref(true)
 
-// onMounted(() => {
 onBeforeMount( () => {
-    loadQuotes();
     let randomPage = Math.floor(Math.random() * totalPages.value + 1);
     let randomMarathon = (randomPage - 1) * numberPerPage.value + Math.floor(Math.random() * numberPerPage.value + 1);
     loadMarathons(randomPage);
     loadMarathon(randomMarathon);
 })
-
-function loadQuotes() {
-    let url = 'assets/content/data/quotes.json';
-    axios.get(url).then(resp => {
-        quotes.value = resp.data
-        randomQuote.value = quotes.value[Math.floor(Math.random() * quotes.value.length)];
-    }).catch(e => {
-        console.log(e)
-    });
-}
 
 function loadMarathons(page) {
     let url = 'assets/content/data/marathons' + (page > 0 ? page : 1) + '.json';
@@ -60,7 +47,6 @@ function loadMarathon(id) {
     axios.get(url).then(response => {
         currentMarathon.value = response.data
     });
-    randomQuote.value = quotes.value[Math.floor(Math.random() * quotes.value.length)];
     setTimeout(() => showResult.value = true, 500);
 }
 
@@ -138,11 +124,8 @@ function loadPage(page) {
                     </transition>
                 </div>
             </div>
-            <div class="container  mt-4 rounded">
-                <blockquote class="blockquote text-center font-weight-bold font-italic">
-                    <i style="font-size:20px;color:black">"{{ randomQuote }}"</i>
-                </blockquote>
-            </div>
+
+            <quote :random-number="Math.random()"></quote>
         </div>
     </div>
 
