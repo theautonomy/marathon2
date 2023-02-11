@@ -2,6 +2,7 @@
 import { ref, onBeforeMount } from 'vue'
 import axios from 'axios'
 import quote from './quote.vue'
+import gsap from 'gsap';
 
 const marathons = ref([])
 const currentMarathon = ref([])
@@ -54,6 +55,24 @@ function loadPage(page) {
     loadMarathons(page);
     loadMarathon((page - 1) * numberPerPage.value + 1);
 }
+
+function onBeforeEnter(el) {
+  gsap.set(el, {
+    scale: 0.5,
+    autoAlpha: 0,
+  })
+};
+
+function onEnter(el, done) {
+  gsap.to(el, {
+    delay: 0.05,
+    duration: 0.75,
+    scale: 1,
+    autoAlpha: 1,
+    ease: "power2.out",
+    onComplete: done
+  });
+}
 </script>
 
 
@@ -100,7 +119,8 @@ function loadPage(page) {
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <transition name="result" mode="out-in">
+                    <!-- <transition name="result" mode="out-in"> -->
+                    <transition @before-enter="onBeforeEnter" @enter="onEnter" :css="false" appear>
                         <div v-if="showResult && currentMarathon.id > 0">
                             <h5>{{ currentMarathon.name }}</h5>
                             <ul class="list-unstyled list-group w-75 mt-4">

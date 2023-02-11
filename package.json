@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "vue": "^3.2.45",
+    "gsap": "^3.10.4",
     "axios": "1.2.2"
   },
   "devDependencies": {
